@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <Link
               href="/"
-              className="font-heading text-2xl font-semibold text-white hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded"
+              className="font-heading text-2xl font-semibold text-white hover:text-accent transition-colors"
             >
               HETAL J SHAH & Co.
             </Link>
@@ -60,7 +60,7 @@ export default function Footer() {
                         setActiveHash(link.href.slice(1));
                       }
                     }}
-                    className={`transition-colors focus:outline-none ${
+                    className={`transition-colors ${
                       isFooterActive(link.href) ? "text-accent" : "text-white/80 hover:text-accent"
                     }`}
                   >
@@ -81,7 +81,7 @@ export default function Footer() {
               <p>
                 <a
                   href="mailto:info@hetaljshahco.com"
-                  className="hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded"
+                  className="hover:text-accent transition-colors"
                 >
                   info@hetaljshahco.com
                 </a>
@@ -89,7 +89,7 @@ export default function Footer() {
               <p>
                 <a
                   href="tel:+919898320491"
-                  className="hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded"
+                  className="hover:text-accent transition-colors"
                 >
                   +91 98983 20491
                 </a>
@@ -109,7 +109,7 @@ export default function Footer() {
               Disclaimer
             </Link>
           </div>
-          <p className="text-white/60 text-xs">
+          <p className="text-white/80 text-xs font-medium">
             ICAI regulated • Member firm
           </p>
         </div>

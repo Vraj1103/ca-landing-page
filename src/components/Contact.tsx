@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 const ADDRESS = {
   line1: "309, Radhe Kishan Arista",
   line2: "Opposite Hirabhai Tower, Uttam Nagar Cross Road",
@@ -9,7 +11,30 @@ const PHONE = "+91 98983 20491";
 const MAP_EMBED_URL =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.920037776759!2d72.59955317530012!3d22.98996771754417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e85e5f5d1c5d1%3A0x40a2a97129249292!2sHETAL%20J%20SHAH%20%26%20CO!5e0!3m2!1sen!2sin!4v1773422013291!5m2!1sen!2sin";
 
+type FormStatus = "idle" | "submitting" | "success" | "error";
+
 export default function Contact() {
+  const [status, setStatus] = useState<FormStatus>("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("server error");
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section
       id="contact"
@@ -33,9 +58,27 @@ export default function Contact() {
           {/* Form – single box aligned with right column height */}
           <div className="order-2 lg:order-1 h-full min-h-0 flex flex-col">
             <div className="flex-1 flex flex-col p-6 rounded-2xl bg-white border border-muted/20 shadow-sm">
+              {status === "success" ? (
+                <div className="flex flex-col flex-1 items-center justify-center gap-4 py-12 text-center">
+                  <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center">
+                    <svg className="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-primary">Message sent!</h3>
+                  <p className="text-muted text-sm max-w-xs">Thank you for reaching out. We&apos;ll get back to you within 24 hours.</p>
+                  <button
+                    type="button"
+                    onClick={() => setStatus("idle")}
+                    className="mt-2 text-sm font-medium text-accent hover:underline"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
               <form
                 className="flex flex-col flex-1 gap-6"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleSubmit}
                 noValidate
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -78,7 +121,7 @@ export default function Contact() {
                     name="phone"
                     autoComplete="tel"
                     className="w-full px-4 py-3 rounded-lg border border-muted/30 bg-white text-primary placeholder-muted/70 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-shadow"
-                    placeholder={PHONE}
+                    placeholder="Your phone number"
                   />
                 </div>
                 <div className="flex-1 min-h-[120px] flex flex-col">
@@ -94,13 +137,27 @@ export default function Contact() {
                     placeholder="How can we help?"
                   />
                 </div>
+                {status === "error" && (
+                  <p role="alert" className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+                    Something went wrong. Please try again or email us directly at{" "}
+                    <a href="mailto:info@hetaljshahco.com" className="underline">info@hetaljshahco.com</a>.
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-primary text-white font-medium rounded-lg hover:bg-accent hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+                  disabled={status === "submitting"}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary text-white font-medium rounded-lg hover:bg-accent hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send message
+                  {status === "submitting" && (
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden>
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                    </svg>
+                  )}
+                  {status === "submitting" ? "Sending…" : "Send message"}
                 </button>
               </form>
+              )}
             </div>
           </div>
 

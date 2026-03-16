@@ -27,7 +27,7 @@ export default function TrustBlock() {
         {/* Single grid so top and bottom stay in exact column alignment */}
         <div className="rounded-2xl border border-white/10 bg-white/5 w-full max-w-3xl overflow-hidden">
           {/* Top row: stats — same 3-column grid */}
-          <div className="grid grid-cols-3 gap-x-4 sm:gap-x-8 px-6 sm:px-10 md:px-12 py-10 sm:py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-x-8 px-6 sm:px-10 md:px-12 py-10 sm:py-12">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center min-w-0">
                 <p className="font-heading text-3xl sm:text-4xl font-semibold text-accent tabular-nums">
@@ -44,7 +44,7 @@ export default function TrustBlock() {
 
           {/* Bottom row: bullets — same 3-column grid, no drift */}
           <ul
-            className="grid grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-6 px-6 sm:px-10 md:px-12 py-10 sm:py-12"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-x-8 px-6 sm:px-10 md:px-12 py-10 sm:py-12"
             role="list"
           >
             {whyUs.map((item) => (

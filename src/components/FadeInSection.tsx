@@ -15,10 +15,17 @@ export default function FadeInSection({
 }: FadeInSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
     const el = ref.current;
     if (!el) return;
+    if (mq.matches) {
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setVisible(true);
@@ -28,6 +35,10 @@ export default function FadeInSection({
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <div

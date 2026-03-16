@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import servicesData from "@/data/services.json";
-import { siteUrl } from "@/lib/site";
+import { siteUrl, siteName } from "@/lib/site";
 import GstRegistrationContent from "@/components/service-content/GstRegistrationContent";
 import MsmeUdyamContent from "@/components/service-content/MsmeUdyamContent";
 import PfRegistrationContent from "@/components/service-content/PfRegistrationContent";
@@ -175,8 +175,26 @@ export default async function ServiceDetailPage({
     ? "Lower TDS Deduction Certificate (Form 13) for NRI Property Sales"
     : name;
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: pageTitle,
+    description: `${pageTitle} – ${category.title} services by ${siteName}, chartered accountants in Ahmedabad, Gujarat.`,
+    provider: { "@type": "AccountingService", name: siteName, url: siteUrl },
+    areaServed: [
+      { "@type": "Country", name: "India" },
+      { "@type": "State", name: "Gujarat" },
+      { "@type": "City", name: "Ahmedabad" },
+    ],
+    url: `${siteUrl}/services/${categoryId}/${serviceSlug}`,
+  };
+
   return (
     <main className="min-h-screen py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="mb-8 text-sm" aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-x-2 text-muted">

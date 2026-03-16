@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <main id="main-content" className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
       <Link
         href="/#contact"
         className="text-muted hover:text-accent text-sm font-medium mb-8 inline-block"
@@ -56,6 +56,6 @@ export default function PrivacyPage() {
           Last updated: March 2025. We may update this policy from time to time; the current version will always be on this page.
         </p>
       </div>
-    </div>
+    </main>
   );
 }

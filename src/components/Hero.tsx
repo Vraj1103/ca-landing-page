@@ -41,13 +41,13 @@ export default function Hero() {
           >
             <Link
               href="/#contact"
-              className="inline-flex items-center px-6 py-3.5 bg-primary text-white font-medium rounded-lg hover:bg-accent hover:text-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+              className="inline-flex items-center px-6 py-3.5 bg-primary text-white font-medium rounded-lg hover:bg-accent hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
               Book a consultation
             </Link>
             <Link
               href="/#services"
-              className="inline-flex items-center px-6 py-3.5 border-2 border-muted/40 text-primary font-medium rounded-lg hover:border-accent hover:text-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+              className="inline-flex items-center px-6 py-3.5 border-2 border-muted/40 text-primary font-medium rounded-lg hover:border-accent hover:text-accent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
               Our services
             </Link>
