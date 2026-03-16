@@ -10,6 +10,7 @@ type ServiceCategory = { id: string; title: string; services: ServiceItem[] };
 const categories = servicesData as ServiceCategory[];
 
 const navLinks = [
+  { href: "/blog", label: "Blog" },
   { href: "#about", label: "About" },
   { href: "#testimonials", label: "Testimonials" },
   { href: "#faq", label: "FAQ" },

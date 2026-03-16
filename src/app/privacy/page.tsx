@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { siteUrl } from "@/lib/site";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Privacy Policy | HETAL J SHAH & Co.",
-  description: "Privacy policy for HETAL J SHAH & Co. chartered accountants.",
+  description:
+    "Privacy policy for HETAL J SHAH & Co. chartered accountants. How we collect, use, and protect your personal information.",
+  openGraph: {
+    title: "Privacy Policy | HETAL J SHAH & Co.",
+    url: `${siteUrl}/privacy`,
+  },
+  alternates: { canonical: `${siteUrl}/privacy` },
+  robots: { index: true, follow: true },
 };
 
 export default function PrivacyPage() {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import servicesData from "@/data/services.json";
+import { siteUrl } from "@/lib/site";
 import CorporateLawsContent from "@/components/service-content/CorporateLawsContent";
 import ConsultancyContent from "@/components/service-content/ConsultancyContent";
 
@@ -114,9 +115,14 @@ export async function generateMetadata({
       description: "End-to-end business consultancy: accounting, payroll, FEMA compliance, project reports, management reporting, IND AS, and financial controls.",
     },
   };
-  if (metaMap[categoryId]) return metaMap[categoryId];
-  return {
+  const meta = metaMap[categoryId] ?? {
     title: `${category.title} | HETAL J SHAH & Co.`,
     description: `${category.title} – Chartered accountancy services by HETAL J SHAH & Co., Ahmedabad.`,
+  };
+  const canonical = `${siteUrl}/services/${categoryId}`;
+  return {
+    ...meta,
+    openGraph: { title: meta.title, description: meta.description, url: canonical },
+    alternates: { canonical },
   };
 }

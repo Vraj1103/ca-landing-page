@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import servicesData from "@/data/services.json";
+import { siteUrl } from "@/lib/site";
 import GstRegistrationContent from "@/components/service-content/GstRegistrationContent";
 import MsmeUdyamContent from "@/components/service-content/MsmeUdyamContent";
 import PfRegistrationContent from "@/components/service-content/PfRegistrationContent";
@@ -442,10 +443,14 @@ export async function generateMetadata({
   };
 
   const key = `${categoryId}/${serviceSlug}`;
-  if (metaMap[key]) return metaMap[key];
-
-  return {
+  const meta = metaMap[key] ?? {
     title: `${result.name} | HETAL J SHAH & Co.`,
     description: `${result.name} – ${result.category.title} services by HETAL J SHAH & Co., chartered accountants in Ahmedabad.`,
+  };
+  const canonical = `${siteUrl}/services/${categoryId}/${serviceSlug}`;
+  return {
+    ...meta,
+    openGraph: { title: meta.title, description: meta.description, url: canonical },
+    alternates: { canonical },
   };
 }

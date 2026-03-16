@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { siteUrl } from "@/lib/site";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Disclaimer | HETAL J SHAH & Co.",
-  description: "Disclaimer and terms for HETAL J SHAH & Co. website and services.",
+  description:
+    "Disclaimer and terms for HETAL J SHAH & Co. website and services. General information only; seek professional advice for your situation.",
+  openGraph: {
+    title: "Disclaimer | HETAL J SHAH & Co.",
+    url: `${siteUrl}/disclaimer`,
+  },
+  alternates: { canonical: `${siteUrl}/disclaimer` },
+  robots: { index: true, follow: true },
 };
 
 export default function DisclaimerPage() {
