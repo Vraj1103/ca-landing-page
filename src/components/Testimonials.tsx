@@ -11,8 +11,7 @@ type Testimonial = {
 };
 
 const testimonials = testimonialsData as Testimonial[];
-const CARD_WIDTH = 380;
-const GAP = 24;
+const GAP = 24; // must match gap-6 (1.5rem = 24px)
 const TRUNCATE_LENGTH = 180;
 const AUTO_SCROLL_MS = 5000;
 
@@ -61,6 +60,7 @@ type TestimonialsProps = { asFallback?: boolean };
 export default function Testimonials({ asFallback = false }: TestimonialsProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const oneSetWidthRef = useRef(0);
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const [isAutoScrollPaused, setIsAutoScrollPaused] = useState(false);
 
@@ -73,9 +73,17 @@ export default function Testimonials({ asFallback = false }: TestimonialsProps) 
     });
   }, []);
 
-  // Infinite scroll: duplicate list and reset when we've scrolled one full set
+  // Infinite scroll: duplicate list. Measure actual card width from DOM so it works on all breakpoints.
   const infiniteList = [...testimonials, ...testimonials];
-  const oneSetWidth = testimonials.length * (CARD_WIDTH + GAP) - GAP;
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const firstCard = el.firstElementChild as HTMLElement | null;
+    if (!firstCard) return;
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    oneSetWidthRef.current = testimonials.length * (cardWidth + GAP) - GAP;
+  }, []);
 
   const pauseAutoScrollTemporarily = useCallback((ms = 5000) => {
     setIsAutoScrollPaused(true);
@@ -93,15 +101,19 @@ export default function Testimonials({ asFallback = false }: TestimonialsProps) 
     if (!el || isAutoScrollPaused) return;
 
     const interval = setInterval(() => {
-      const next = el.scrollLeft + (CARD_WIDTH + GAP);
-      if (next >= oneSetWidth) {
+      const oneSetWidth = oneSetWidthRef.current;
+      const firstCard = el.firstElementChild as HTMLElement | null;
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 340;
+      const step = cardWidth + GAP;
+      const next = el.scrollLeft + step;
+      if (oneSetWidth > 0 && el.scrollLeft >= oneSetWidth - 10) {
         el.scrollLeft = 0;
       } else {
         el.scrollTo({ left: next, behavior: "smooth" });
       }
     }, AUTO_SCROLL_MS);
     return () => clearInterval(interval);
-  }, [isAutoScrollPaused, oneSetWidth]);
+  }, [isAutoScrollPaused]);
 
   useEffect(() => {
     return () => {

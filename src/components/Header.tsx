@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import servicesData from "@/data/services.json";
 
 type ServiceItem = { slug: string; name: string };
@@ -20,6 +20,7 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
@@ -77,7 +78,7 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-heading text-xl md:text-2xl font-semibold text-primary hover:text-accent transition-colors focus:outline-none shrink-0"
+            className="font-heading text-xl md:text-2xl font-semibold text-primary hover:text-accent transition-colors shrink-0"
           >
             HETAL J SHAH & Co.
           </Link>
@@ -89,7 +90,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setServicesOpen((o) => !o)}
-                className={`font-medium transition-colors focus:outline-none px-1 flex items-center gap-1 ${
+                className={`font-medium transition-colors px-1 flex items-center gap-1 ${
                   pathname.startsWith("/services") || servicesOpen
                     ? "text-accent"
                     : "text-muted hover:text-accent"
@@ -130,7 +131,7 @@ export default function Header() {
                         onMouseEnter={() => setHoveredCatId(cat.id)}
                         onClick={() => {
                           setServicesOpen(false);
-                          window.location.href = `/services/${cat.id}`;
+                          router.push(`/services/${cat.id}`);
                         }}
                         className={`w-full flex items-center justify-between gap-2 px-4 py-3 text-left text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-inset ${
                           isActive
@@ -194,7 +195,7 @@ export default function Header() {
                     setActiveHash(link.href.slice(1));
                   }
                 }}
-                className={`font-medium transition-colors focus:outline-none px-1 ${
+                className={`font-medium transition-colors px-1 ${
                   isNavActive(link.href) ? "text-accent" : "text-muted hover:text-accent"
                 }`}
               >
@@ -247,7 +248,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                className={`w-full flex items-center justify-between py-2 font-medium focus:outline-none px-2 ${
+                className={`w-full flex items-center justify-between py-2 font-medium px-2 ${
                   pathname.startsWith("/services") || mobileServicesOpen
                     ? "text-accent"
                     : "text-muted hover:text-accent"
@@ -315,7 +316,7 @@ export default function Header() {
                   }
                   setMobileOpen(false);
                 }}
-                className={`py-2 font-medium focus:outline-none px-2 ${
+                className={`py-2 font-medium px-2 ${
                   isNavActive(link.href) ? "text-accent" : "text-muted hover:text-accent"
                 }`}
               >

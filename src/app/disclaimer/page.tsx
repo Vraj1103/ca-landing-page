@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function DisclaimerPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <main id="main-content" className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
       <Link
         href="/#contact"
         className="text-muted hover:text-accent text-sm font-medium mb-8 inline-block"
@@ -56,6 +56,6 @@ export default function DisclaimerPage() {
           Last updated: March 2025.
         </p>
       </div>
-    </div>
+    </main>
   );
 }

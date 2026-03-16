@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: `${siteName} | Chartered Accountants Ahmedabad, Gujarat – Tax, Audit & NRI CA India`,
-    template: `%s`,
+    template: `%s | ${siteName}`,
   },
   description: defaultDescription,
   keywords: [
@@ -65,10 +65,9 @@ export const metadata: Metadata = {
     siteName,
     title: `${siteName} | CA Ahmedabad, Gujarat – Tax, Audit & NRI Consultant India`,
     description: defaultDescription,
-    // Add public/og.png (1200×630) for rich link previews
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${siteName} | CA Ahmedabad, Gujarat – Tax, Audit & NRI Consultant India`,
     description: defaultDescription,
   },

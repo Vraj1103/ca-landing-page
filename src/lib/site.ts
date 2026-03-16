@@ -17,7 +17,7 @@ export const email = "info@hetaljshahco.com";
 export const address = {
   street: "309, Radhe Kishan Arista, Opposite Hirabhai Tower, Uttam Nagar Cross Road",
   city: "Maninagar",
-  state: "Ahmedabad",
+  state: "Gujarat",
   postalCode: "380008",
   region: "Gujarat",
 };

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import blogPosts from "@/data/blog.json";
-import { siteUrl } from "@/lib/site";
+import { siteUrl, siteName } from "@/lib/site";
 import { getCategoryLabel } from "@/data/blogCategories";
 import GstReturnDueDatesPost from "@/components/blog/posts/GstReturnDueDatesPost";
 import WhoShouldFileItrPost from "@/components/blog/posts/WhoShouldFileItrPost";
@@ -97,8 +97,25 @@ export default async function BlogPostPage({
     year: "numeric",
   });
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Organization", name: siteName, url: siteUrl },
+    publisher: { "@type": "Organization", name: siteName, url: siteUrl },
+    url: `${siteUrl}/blog/${slug}`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/blog/${slug}` },
+  };
+
   return (
     <main className="min-h-screen py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="mb-8 text-sm" aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-x-2 text-muted">

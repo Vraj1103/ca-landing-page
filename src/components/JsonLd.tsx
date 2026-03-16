@@ -12,7 +12,7 @@ const localBusinessJsonLd = {
   address: {
     "@type": "PostalAddress",
     streetAddress: address.street,
-    addressLocality: address.city,
+    addressLocality: "Ahmedabad",
     addressRegion: address.region,
     postalCode: address.postalCode,
     addressCountry: "IN",
