@@ -7,9 +7,11 @@ export const siteUrl =
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://www.hetaljshahco.com");
 
 export const siteName = "HETAL J SHAH & Co.";
-export const siteTagline = "Chartered Accountants in Ahmedabad – Audit, Tax & Advisory";
+export const siteTagline = "Chartered Accountants in Ahmedabad, Gujarat – Audit, Tax & NRI Services";
 export const defaultDescription =
-  "Chartered accountants in Ahmedabad—audit, tax, and advisory. Maninagar, Gujarat. ICAI regulated. Call +91 98983 20491.";
+  "Chartered accountants in Ahmedabad, Gujarat & pan-India—audit, tax, GST, company registration & NRI tax consultant. CA firm Maninagar, Ahmedabad. ICAI regulated. NRI ITR, 15CA/15CB, property sale TDS. Call +91 98983 20491.";
+export const nriDescription =
+  "NRI tax consultant India & Gujarat—ITR for NRIs, 15CA 15CB for repatriation, lower TDS certificate for property sale, NRO NRE advice. CA for NRIs in Ahmedabad serving clients across India and overseas.";
 export const phone = "+91 98983 20491";
 export const email = "info@hetaljshahco.com";
 export const address = {

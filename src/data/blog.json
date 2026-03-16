@@ -4,7 +4,7 @@
     "title": "GST Return Filing: Due Dates and Common Mistakes to Avoid",
     "excerpt": "A quick reference to GST return due dates for FY 2025-26 and the most common errors that lead to notices or lost ITC.",
     "date": "2025-03-01",
-    "category": "Indirect Tax",
+    "category": "indirect-tax",
     "readTime": "5 min read"
   },
   {
@@ -12,15 +12,15 @@
     "title": "Who Should File an Income Tax Return (ITR) and Key Due Dates",
     "excerpt": "Understanding income tax return filing applicability, which ITR form to use, and important due dates for FY 2025-26.",
     "date": "2025-02-15",
-    "category": "Direct Tax",
+    "category": "direct-tax",
     "readTime": "6 min read"
   },
   {
     "slug": "nri-when-to-file-income-tax-return-in-india",
     "title": "NRI Tax: When Do You Need to File an ITR in India?",
-    "excerpt": "If you are an NRI with income in India, here’s when you must file an income tax return and what to report.",
+    "excerpt": "If you are an NRI with income in India, here's when you must file an income tax return and what to report.",
     "date": "2025-02-01",
-    "category": "NRI Tax",
+    "category": "nri-tax",
     "readTime": "5 min read"
   },
   {
@@ -28,7 +28,119 @@
     "title": "Pvt Ltd, LLP, or OPC: Which Entity Is Right for Your Business?",
     "excerpt": "A simple comparison of Private Limited, LLP, and One Person Company to help you choose the right structure.",
     "date": "2025-01-20",
-    "category": "Company Formation",
+    "category": "company-formation",
+    "readTime": "6 min read"
+  },
+  {
+    "slug": "tds-for-salaried-employees-and-form-16",
+    "title": "TDS for Salaried Employees: Understanding Form 16 and Your Tax Deductions",
+    "excerpt": "How TDS works on salary, what Form 16 contains, and how to use it while filing your ITR.",
+    "date": "2025-01-10",
+    "category": "direct-tax",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "when-is-gst-registration-mandatory",
+    "title": "When Is GST Registration Mandatory for Your Business?",
+    "excerpt": "Turnover limits, category-based registration, and when you must register under GST even below the threshold.",
+    "date": "2025-01-05",
+    "category": "indirect-tax",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "how-to-respond-to-income-tax-notice",
+    "title": "How to Respond to an Income Tax Notice: A Practical Guide",
+    "excerpt": "Common types of notices, what they mean, and the steps to take when you receive one.",
+    "date": "2024-12-20",
+    "category": "direct-tax",
+    "readTime": "6 min read"
+  },
+  {
+    "slug": "udyam-msme-registration-benefits-for-small-business",
+    "title": "Udyam (MSME) Registration: Benefits for Small Businesses",
+    "excerpt": "Why register under Udyam, key benefits like priority sector lending and subsidies, and how to apply.",
+    "date": "2024-12-10",
+    "category": "business-registration",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "tax-audit-section-44ab-who-needs-it",
+    "title": "Tax Audit Under Section 44AB: Who Needs It and What It Covers",
+    "excerpt": "When is a tax audit mandatory, what turnover limits apply, and what the auditor reports.",
+    "date": "2024-11-28",
+    "category": "audit-assurance",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "capital-gains-exemption-section-54-54f",
+    "title": "Capital Gains Exemption on Property: Section 54 and 54F Explained",
+    "excerpt": "How to save tax on sale of property by reinvesting in another house under Sections 54 and 54F.",
+    "date": "2024-11-15",
+    "category": "direct-tax",
+    "readTime": "6 min read"
+  },
+  {
+    "slug": "form-15ca-15cb-when-do-you-need-it",
+    "title": "Form 15CA and 15CB: When Do You Need Them for Sending Money Abroad?",
+    "excerpt": "Understanding when a CA certificate (15CB) and tax declaration (15CA) are required for foreign remittances.",
+    "date": "2024-11-01",
+    "category": "nri-tax",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "roc-annual-filing-for-private-companies",
+    "title": "ROC Annual Filing for Private Companies: MGT-7, AOC-4 and Due Dates",
+    "excerpt": "A quick guide to annual return and financial statement filing with the Registrar of Companies.",
+    "date": "2024-10-20",
+    "category": "company-formation",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "nri-property-sale-tds-capital-gains-india",
+    "title": "NRI Property Sale in India: TDS, Capital Gains and Lower TDS Certificate",
+    "excerpt": "TDS rates for NRI property sale in India, capital gains tax, and how to get a lower or nil TDS certificate (Form 13). Expert NRI CA services in Gujarat and across India.",
+    "date": "2024-10-10",
+    "category": "nri-tax",
+    "readTime": "6 min read"
+  },
+  {
+    "slug": "nri-repatriation-nro-nre-rules-limits",
+    "title": "NRI Repatriation: NRO, NRE and FCNR Rules and Limits in India",
+    "excerpt": "How NRIs can repatriate funds from India—NRO, NRE, FCNR limits, LRS, and tax compliance. NRI tax consultant India and Gujarat.",
+    "date": "2024-09-28",
+    "category": "nri-tax",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "fssai-licence-when-needed-food-business",
+    "title": "FSSAI Licence for Food Business in India: When You Need It and How to Apply",
+    "excerpt": "FSSAI registration and food licence in India—Basic, State and Central licence, eligibility, fees and process. Business registration Gujarat and pan-India.",
+    "date": "2024-09-15",
+    "category": "business-registration",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "pf-esi-registration-who-must-register",
+    "title": "PF and ESIC Registration in India: Who Must Register and Key Compliances",
+    "excerpt": "EPF and ESIC registration for employers in India—applicability, contribution rates, due dates and returns. Labour compliance Gujarat and India.",
+    "date": "2024-09-01",
+    "category": "business-registration",
+    "readTime": "6 min read"
+  },
+  {
+    "slug": "statutory-audit-private-companies-when-mandatory",
+    "title": "Statutory Audit for Private Companies in India: When Is It Mandatory?",
+    "excerpt": "When private companies in India need a statutory audit, turnover limits, and what the audit covers. Audit and assurance services Ahmedabad, Gujarat and India.",
+    "date": "2024-08-20",
+    "category": "audit-assurance",
+    "readTime": "5 min read"
+  },
+  {
+    "slug": "gstr-9-gstr-9c-annual-return-checklist",
+    "title": "GSTR-9 and GSTR-9C: Annual GST Return and Reconciliation Checklist",
+    "excerpt": "Annual GST return (GSTR-9) and reconciliation statement (GSTR-9C) in India—who must file, due dates and common errors. GST audit services Gujarat and India.",
+    "date": "2024-08-05",
+    "category": "audit-assurance",
     "readTime": "6 min read"
   }
 ]

@@ -114,6 +114,10 @@ export async function generateMetadata({
       title: "Business Consultancy Services | HETAL J SHAH & Co.",
       description: "End-to-end business consultancy: accounting, payroll, FEMA compliance, project reports, management reporting, IND AS, and financial controls.",
     },
+    "nri-tax-and-allied-services": {
+      title: "NRI Tax Consultant India & Gujarat | ITR, 15CA 15CB, Property TDS | HETAL J SHAH & Co.",
+      description: "NRI tax consultant in Ahmedabad, Gujarat & India. NRI income tax return, 15CA 15CB for repatriation, lower TDS certificate for property sale, NRO NRE advice. CA for NRIs—serving clients across India and overseas.",
+    },
   };
   const meta = metaMap[categoryId] ?? {
     title: `${category.title} | HETAL J SHAH & Co.`,

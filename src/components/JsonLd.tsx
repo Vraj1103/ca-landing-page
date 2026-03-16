@@ -22,10 +22,23 @@ const localBusinessJsonLd = {
     latitude: 22.9899677,
     longitude: 72.5995532,
   },
-  areaServed: {
-    "@type": "Country",
-    name: "India",
-  },
+  areaServed: [
+    { "@type": "Country", name: "India" },
+    { "@type": "State", name: "Gujarat" },
+    { "@type": "City", name: "Ahmedabad" },
+  ],
+  serviceType: [
+    "Chartered Accountant",
+    "Tax Consultant",
+    "GST Registration and Filing",
+    "Income Tax Return",
+    "Audit and Assurance",
+    "NRI Tax Consultant",
+    "NRI Income Tax Return",
+    "15CA 15CB Certificate",
+    "Company Registration",
+    "Business Registration Gujarat",
+  ],
   priceRange: "$$",
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",

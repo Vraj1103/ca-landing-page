@@ -10,13 +10,13 @@ import FadeInSection from "@/components/FadeInSection";
 import { siteUrl, siteName } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `${siteName} | Chartered Accountants in Ahmedabad`,
+  title: `${siteName} | CA Ahmedabad, Gujarat – Tax, Audit & NRI Consultant India`,
   description:
-    "Chartered accountants in Ahmedabad—audit, tax, and advisory. Maninagar, Gujarat. ICAI regulated. Call +91 98983 20491.",
+    "Chartered accountants in Ahmedabad, Gujarat & India—audit, tax, GST, company registration. NRI tax consultant: ITR for NRIs, 15CA 15CB, property sale TDS. Maninagar, Ahmedabad. ICAI regulated. Call +91 98983 20491.",
   openGraph: {
-    title: `${siteName} | Chartered Accountants in Ahmedabad`,
+    title: `${siteName} | CA Ahmedabad, Gujarat – Tax, Audit & NRI Consultant India`,
     description:
-      "Chartered accountants in Ahmedabad—audit, tax, and advisory. Maninagar, Gujarat. ICAI regulated.",
+      "CA firm Ahmedabad, Gujarat & pan-India. Audit, tax, GST, company registration. NRI tax consultant India—ITR, 15CA/15CB, NRI property sale. Maninagar, Ahmedabad.",
     url: siteUrl,
   },
   alternates: { canonical: siteUrl },
