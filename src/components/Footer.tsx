@@ -1,15 +1,36 @@
+ "use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const footerLinks = [
   { href: "/services", label: "Services" },
   { href: "/blog", label: "Blog" },
-  { href: "#about", label: "About" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const [activeHash, setActiveHash] = useState("");
+
+  useEffect(() => {
+    const syncHash = () => setActiveHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, []);
+
+  const isFooterActive = (href: string) => {
+    if (href === "/blog") return pathname.startsWith("/blog");
+    if (href === "/services") return pathname.startsWith("/services");
+    if (href.startsWith("/#")) return pathname === "/" && activeHash === href.slice(1);
+    return pathname === href;
+  };
+
   return (
     <footer className="bg-primary text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -34,7 +55,14 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/80 hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded"
+                    onClick={() => {
+                      if (link.href.startsWith("/#")) {
+                        setActiveHash(link.href.slice(1));
+                      }
+                    }}
+                    className={`transition-colors focus:outline-none ${
+                      isFooterActive(link.href) ? "text-accent" : "text-white/80 hover:text-accent"
+                    }`}
                   >
                     {link.label}
                   </Link>

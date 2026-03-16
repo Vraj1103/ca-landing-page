@@ -17,20 +17,47 @@ function isWidgetLoaded(container: HTMLDivElement | null): boolean {
 
 export default function TestimonialsWithWidget() {
   const widgetRef = useRef<HTMLDivElement>(null);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [widgetReady, setWidgetReady] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!isWidgetLoaded(widgetRef.current)) {
-        setShowFallback(true);
+    if (!scriptLoaded || showFallback) return;
+    const container = widgetRef.current;
+    if (!container) return;
+
+    const verifyWidget = () => {
+      if (isWidgetLoaded(container)) {
+        setWidgetReady(true);
       }
+    };
+
+    verifyWidget();
+    const observer = new MutationObserver(() => verifyWidget());
+    observer.observe(container, { childList: true, subtree: true });
+
+    const timer = setTimeout(() => {
+      if (!isWidgetLoaded(container)) {
+        setShowFallback(true);
+        return;
+      }
+      setWidgetReady(true);
     }, WIDGET_CHECK_DELAY_MS);
-    return () => clearTimeout(timer);
-  }, []);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, [scriptLoaded, showFallback]);
 
   return (
     <>
-      <Script src={ELFSIGHT_SCRIPT} strategy="lazyOnload" />
+      <Script
+        src={ELFSIGHT_SCRIPT}
+        strategy="lazyOnload"
+        onLoad={() => setScriptLoaded(true)}
+        onError={() => setShowFallback(true)}
+      />
       <section
         id="testimonials"
         className="py-20 md:py-28 bg-surface scroll-mt-20"
@@ -53,7 +80,7 @@ export default function TestimonialsWithWidget() {
             <div
               ref={widgetRef}
               className="min-h-[200px] [&_.elfsight-app-iframe]:!w-full"
-              aria-hidden={showFallback}
+              aria-busy={!widgetReady}
             >
               <div
                 className="elfsight-app-e62031fc-bcdf-4caa-95b2-f367de8c1308"

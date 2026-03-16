@@ -33,20 +33,20 @@ export default function Hero() {
             className="mt-6 text-lg md:text-xl text-muted max-w-xl animate-slide-up opacity-0"
             style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
           >
-            Audit, tax, and advisory. We help businesses across the GLOBE stay compliant and grow with clarity.
+            Audit, tax, and advisory. We help businesses across India and overseas stay compliant and grow with clarity.
           </p>
           <div
             className="mt-10 flex flex-wrap gap-4 animate-slide-up opacity-0"
             style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
           >
             <Link
-              href="#contact"
+              href="/#contact"
               className="inline-flex items-center px-6 py-3.5 bg-primary text-white font-medium rounded-lg hover:bg-accent hover:text-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
               Book a consultation
             </Link>
             <Link
-              href="#services"
+              href="/#services"
               className="inline-flex items-center px-6 py-3.5 border-2 border-muted/40 text-primary font-medium rounded-lg hover:border-accent hover:text-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
               Our services

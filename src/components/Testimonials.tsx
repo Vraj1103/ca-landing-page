@@ -60,7 +60,9 @@ type TestimonialsProps = { asFallback?: boolean };
 
 export default function Testimonials({ asFallback = false }: TestimonialsProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+  const [isAutoScrollPaused, setIsAutoScrollPaused] = useState(false);
 
   const toggleExpanded = useCallback((id: string) => {
     setExpandedIds((prev) => {
@@ -75,28 +77,20 @@ export default function Testimonials({ asFallback = false }: TestimonialsProps) 
   const infiniteList = [...testimonials, ...testimonials];
   const oneSetWidth = testimonials.length * (CARD_WIDTH + GAP) - GAP;
 
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    let rafId: number;
-    let lastScroll = 0;
-
-    const checkReset = () => {
-      const left = el.scrollLeft;
-      if (left >= oneSetWidth - 10) {
-        el.scrollLeft = 0;
-      }
-      lastScroll = el.scrollLeft;
-      rafId = requestAnimationFrame(checkReset);
-    };
-    rafId = requestAnimationFrame(checkReset);
-    return () => cancelAnimationFrame(rafId);
-  }, [oneSetWidth]);
+  const pauseAutoScrollTemporarily = useCallback((ms = 5000) => {
+    setIsAutoScrollPaused(true);
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsAutoScrollPaused(false);
+      resumeTimeoutRef.current = null;
+    }, ms);
+  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (!el) return;
+    if (!el || isAutoScrollPaused) return;
 
     const interval = setInterval(() => {
       const next = el.scrollLeft + (CARD_WIDTH + GAP);
@@ -107,7 +101,15 @@ export default function Testimonials({ asFallback = false }: TestimonialsProps) 
       }
     }, AUTO_SCROLL_MS);
     return () => clearInterval(interval);
-  }, [oneSetWidth]);
+  }, [isAutoScrollPaused, oneSetWidth]);
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const content = (
     <div
@@ -115,6 +117,17 @@ export default function Testimonials({ asFallback = false }: TestimonialsProps) 
       className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory scroll-smooth h-[360px]"
       style={{ scrollbarGutter: "stable" }}
       aria-label="Testimonials carousel"
+      onMouseEnter={() => setIsAutoScrollPaused(true)}
+      onMouseLeave={() => setIsAutoScrollPaused(false)}
+      onFocusCapture={() => setIsAutoScrollPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setIsAutoScrollPaused(false);
+        }
+      }}
+      onPointerDown={() => pauseAutoScrollTemporarily()}
+      onWheel={() => pauseAutoScrollTemporarily(3000)}
+      onTouchStart={() => pauseAutoScrollTemporarily()}
     >
       {infiniteList.map((t, i) => (
         <TestimonialCard
