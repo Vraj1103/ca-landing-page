@@ -56,7 +56,9 @@ function TestimonialCard({
   );
 }
 
-export default function Testimonials() {
+type TestimonialsProps = { asFallback?: boolean };
+
+export default function Testimonials({ asFallback = false }: TestimonialsProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
@@ -107,6 +109,26 @@ export default function Testimonials() {
     return () => clearInterval(interval);
   }, [oneSetWidth]);
 
+  const content = (
+    <div
+      ref={scrollRef}
+      className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory scroll-smooth h-[360px]"
+      style={{ scrollbarGutter: "stable" }}
+      aria-label="Testimonials carousel"
+    >
+      {infiniteList.map((t, i) => (
+        <TestimonialCard
+          key={`${t.id}-${i}`}
+          t={t}
+          isExpanded={expandedIds.has(t.id)}
+          onToggle={() => toggleExpanded(t.id)}
+        />
+      ))}
+    </div>
+  );
+
+  if (asFallback) return content;
+
   return (
     <section
       id="testimonials"
@@ -125,22 +147,7 @@ export default function Testimonials() {
             Trusted by businesses across sectors for audit, tax, and advisory.
           </p>
         </div>
-
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory scroll-smooth h-[360px]"
-          style={{ scrollbarGutter: "stable" }}
-          aria-label="Testimonials carousel"
-        >
-          {infiniteList.map((t, i) => (
-            <TestimonialCard
-              key={`${t.id}-${i}`}
-              t={t}
-              isExpanded={expandedIds.has(t.id)}
-              onToggle={() => toggleExpanded(t.id)}
-            />
-          ))}
-        </div>
+        {content}
       </div>
     </section>
   );

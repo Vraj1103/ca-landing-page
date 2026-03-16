@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import TrustBlock from "@/components/TrustBlock";
 import About from "@/components/About";
-import Testimonials from "@/components/Testimonials";
+import TestimonialsWithWidget from "@/components/TestimonialsWithWidget";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import FadeInSection from "@/components/FadeInSection";
@@ -34,7 +34,7 @@ export default function Home() {
         <About />
       </FadeInSection>
       <FadeInSection delay={150}>
-        <Testimonials />
+        <TestimonialsWithWidget />
       </FadeInSection>
       <FadeInSection delay={100}>
         <FAQ />
