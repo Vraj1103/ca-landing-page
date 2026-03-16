@@ -72,6 +72,11 @@ export const metadata: Metadata = {
     title: `${siteName} | CA Ahmedabad, Gujarat – Tax, Audit & NRI Consultant India`,
     description: defaultDescription,
   },
+  icons: {
+    icon: "/ca-logo.png",
+    shortcut: "/ca-logo.png",
+    apple: "/ca-logo.png",
+  },
   robots: {
     index: true,
     follow: true,

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import servicesData from "@/data/services.json";
 
 type ServiceItem = { slug: string; name: string };
@@ -11,19 +12,34 @@ const categories = servicesData as ServiceCategory[];
 
 const navLinks = [
   { href: "/blog", label: "Blog" },
-  { href: "#about", label: "About" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState("");
   const [hoveredCatId, setHoveredCatId] = useState<string>(categories[0]?.id ?? "");
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileCatOpen, setMobileCatOpen] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const syncHash = () => setActiveHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, []);
+
+  const isNavActive = (href: string) => {
+    if (href === "/blog") return pathname.startsWith("/blog");
+    if (href.startsWith("/#")) return pathname === "/" && activeHash === href.slice(1);
+    return pathname === href;
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -61,7 +77,7 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-heading text-xl md:text-2xl font-semibold text-primary hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded shrink-0"
+            className="font-heading text-xl md:text-2xl font-semibold text-primary hover:text-accent transition-colors focus:outline-none shrink-0"
           >
             HETAL J SHAH & Co.
           </Link>
@@ -73,7 +89,11 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setServicesOpen((o) => !o)}
-                className="text-muted hover:text-accent font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded px-1 flex items-center gap-1"
+                className={`font-medium transition-colors focus:outline-none px-1 flex items-center gap-1 ${
+                  pathname.startsWith("/services") || servicesOpen
+                    ? "text-accent"
+                    : "text-muted hover:text-accent"
+                }`}
                 aria-expanded={servicesOpen}
                 aria-haspopup="true"
                 aria-controls="services-megamenu"
@@ -169,7 +189,14 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-muted hover:text-accent font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded px-1"
+                onClick={() => {
+                  if (link.href.startsWith("/#")) {
+                    setActiveHash(link.href.slice(1));
+                  }
+                }}
+                className={`font-medium transition-colors focus:outline-none px-1 ${
+                  isNavActive(link.href) ? "text-accent" : "text-muted hover:text-accent"
+                }`}
               >
                 {link.label}
               </Link>
@@ -220,7 +247,11 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                className="w-full flex items-center justify-between py-2 text-muted hover:text-accent font-medium focus:outline-none focus:ring-2 focus:ring-accent rounded px-2"
+                className={`w-full flex items-center justify-between py-2 font-medium focus:outline-none px-2 ${
+                  pathname.startsWith("/services") || mobileServicesOpen
+                    ? "text-accent"
+                    : "text-muted hover:text-accent"
+                }`}
                 aria-expanded={mobileServicesOpen}
               >
                 Services
@@ -278,8 +309,15 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="py-2 text-muted hover:text-accent font-medium focus:outline-none focus:ring-2 focus:ring-accent rounded px-2"
+                onClick={() => {
+                  if (link.href.startsWith("/#")) {
+                    setActiveHash(link.href.slice(1));
+                  }
+                  setMobileOpen(false);
+                }}
+                className={`py-2 font-medium focus:outline-none px-2 ${
+                  isNavActive(link.href) ? "text-accent" : "text-muted hover:text-accent"
+                }`}
               >
                 {link.label}
               </Link>
