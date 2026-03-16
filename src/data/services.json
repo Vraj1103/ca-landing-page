@@ -1,0 +1,81 @@
+[
+  {
+    "id": "business-registration",
+    "title": "Business Registration",
+    "services": [
+      { "slug": "gst-registration", "name": "GST Registration" },
+      { "slug": "msme-udyam-registration", "name": "MSME Udyam Registration" },
+      { "slug": "pf-registration", "name": "PF Registration" },
+      { "slug": "esic-registration", "name": "ESIC Registration" },
+      { "slug": "professional-tax-registration", "name": "Professional Tax Registration" },
+      { "slug": "fssai-registration", "name": "FSSAI Registration" },
+      { "slug": "rera-registration-real-estate-agent", "name": "Rera Registration – Real Estate Agent" },
+      { "slug": "shop-act-registration", "name": "Shop Act Registration" },
+      { "slug": "iec-registration", "name": "IEC Registration" },
+      { "slug": "trademark-registration", "name": "Trademark Registration" }
+    ]
+  },
+  {
+    "id": "company-formation",
+    "title": "Company Formation",
+    "services": [
+      { "slug": "private-limited-company-registration", "name": "Private Limited Company Registration" },
+      { "slug": "one-person-company-opc", "name": "One Person Company (OPC)" },
+      { "slug": "limited-liability-partnerships-llp", "name": "Limited Liability Partnerships (LLP)" },
+      { "slug": "partnership-firm-registration", "name": "Partnership Firm Registration" },
+      { "slug": "section-8-company-ngo", "name": "Section 8 Company – NGO" },
+      { "slug": "sole-proprietorship-registration", "name": "Sole Proprietorship Registration" }
+    ]
+  },
+  {
+    "id": "audit-assurance",
+    "title": "Audit & Assurance",
+    "services": [
+      { "slug": "statutory-audit", "name": "Statutory Audit" },
+      { "slug": "tax-audit", "name": "Tax Audit" },
+      { "slug": "stock-audit", "name": "Stock Audit" },
+      { "slug": "llp-audit", "name": "LLP Audit" },
+      { "slug": "gst-audit", "name": "GST Audit" }
+    ]
+  },
+  {
+    "id": "direct-tax",
+    "title": "Direct Tax",
+    "services": [
+      { "slug": "itr-filing-income-tax-return", "name": "ITR Filing – Income Tax Return" },
+      { "slug": "income-tax-notice-reply-service", "name": "Income Tax Notice Reply Service" },
+      { "slug": "tds-return-filing-services", "name": "TDS Return Filing Services" },
+      { "slug": "income-tax-consultancy", "name": "Income Tax Consultancy" }
+    ]
+  },
+  {
+    "id": "indirect-tax",
+    "title": "Indirect Tax",
+    "services": [
+      { "slug": "gst-return-filing-services", "name": "GST Return Filing Services" },
+      { "slug": "gst-refund-services", "name": "GST Refund Services" },
+      { "slug": "gst-cancellation-services", "name": "GST Cancellation Services" },
+      { "slug": "gst-consultancy-services", "name": "GST Consultancy Services" }
+    ]
+  },
+  {
+    "id": "nri-tax-and-allied-services",
+    "title": "NRI Tax and Allied Services",
+    "services": [
+      { "slug": "residential-status-for-nris", "name": "Residential Status for NRIs" },
+      { "slug": "nri-income-tax-return-filing", "name": "NRI Income Tax Return Filing" },
+      { "slug": "repatriation-of-fund-15ca-15cb-certificate", "name": "Repatriation of Fund – 15CA, 15CB Certificate" },
+      { "slug": "lower-tds-deduction-certificate", "name": "Lower TDS Deduction Certificate" }
+    ]
+  },
+  {
+    "id": "corporate-laws",
+    "title": "Corporate Laws",
+    "services": []
+  },
+  {
+    "id": "consultancy",
+    "title": "Consultancy",
+    "services": []
+  }
+]
